@@ -25,7 +25,7 @@ class Module
         }
         $app     = $e->getApplication();
         $locator = $app->getServiceManager();
-        $auth    = $locator->get('ControllerPluginManager')->get('Permission')->doAuthorization($e, $locator);
+        return $locator->get('ControllerPluginManager')->get('Permission')->doAuthorization($e, $locator);
     }
 
     public function getAutoloaderConfig()
