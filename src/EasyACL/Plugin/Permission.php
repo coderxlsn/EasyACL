@@ -35,13 +35,15 @@ class Permission extends AbstractPlugin
             if ($this->getService($sm)->getUser()&&$needed!=="EasyACL\Errors\\norights") {
                 $url      = $router->assemble(array(), array('name' => 'acl/norights'));
                 $response = $e->getResponse();
-                $response->setStatusCode(401);
+                $response->setStatusCode(302);
                 $response->getHeaders()->addHeaderLine('Location', $url);
+                return $response;
             } elseif ($needed!=="EasyACL\User\login"&&$needed!=="API\login\index"&&$needed!=="EasyACL\Errors\\norights") {
                 $url      = $router->assemble(array(), array('name' => 'acl/login'));
                 $response = $e->getResponse();
                 $response->setStatusCode(302);
                 $response->getHeaders()->addHeaderLine('Location', $url);
+                return $response;
             }
         }
     }
